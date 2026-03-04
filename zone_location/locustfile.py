@@ -26,9 +26,11 @@ class LocationServiceUser(HttpUser):
 
         lat, lon = RandomCoordinateGenerator.random_point_in_polygon()
         print(lat, lon)
-        self.client.get(
+        res = self.client.get(
             f"/api/v1/zones/location",
             params={"latitude": {lat}, "longitude": {lon}},
             headers=self.headers(),
             name="/api/v1/zones/location"
         )
+
+        print(res.status_code, res.text)
