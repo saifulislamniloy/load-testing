@@ -57,6 +57,8 @@ class LocationServiceUser(HttpUser):
             "stoppages": [{"latitude": stoppage_lat, "longitude": stoppage_lon}]
         }
 
+        print(payload)
+
         res = self.client.post(
             "/api/v1/cities/trip-type",
             json=payload,
