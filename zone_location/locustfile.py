@@ -1,5 +1,6 @@
 # locustfile.py
 from locust import HttpUser, task, between, TaskSet
+from load_testing.util.RandomCoordinateGenerator import RandomCoordinateGenerator
 
 # --- CONFIG ---
 JWT_TOKEN = "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiI5MGEyZmZjMS1mMTY1LTQ2NDktOGIyZS1jMDJiYmQxNTA3MTIiLCJzdWIiOiI4MDA2OTc4NzY0Mzg5MTMwMjQiLCJpYXQiOjE3NzI1OTc3MDQsImV4cCI6MTc3MzIwMjUwNCwidG9rZW5fdmVyIjoxLCJkZXZpY2VfaWQiOiJzdHJpbmciLCJzdWJfdHlwZSI6IkRSSVZFUiIsInNpZCI6ImI5N2VkYTBjLTI4NjUtNDg2OS1hZjljLTYzMzk0YWQ2MDc5ZiIsInJvbGVzIjpbIlJPTEVfRFJJVkVSIl19.Zie25X8XoM58adEzGfpapae8W5IFxcAi5D5tJKTsjgyeEwmfOfrtj91PDCqMSJhjXrkKc1RCTWs7QNEYncGnDg"  # paste your token here
@@ -22,9 +23,12 @@ class LocationServiceUser(HttpUser):
     @task
     def find_zone_by_location(self):
         """Most likely your hottest endpoint"""
+
+        lat, lon = RandomCoordinateGenerator.random_point_in_polygon()
+        print(lat, lon)
         self.client.get(
-            "/api/v1/zones/location",
-            params={"latitude": 23.780007, "longitude": 90.416147},
+            f"/api/v1/zones/location",
+            params={"latitude": {lat}, "longitude": {lon}},
             headers=self.headers(),
             name="/api/v1/zones/location"
         )
