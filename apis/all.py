@@ -1,9 +1,7 @@
 # locustfile.py
 from locust import HttpUser, task, between, TaskSet
+JWT_TOKEN = constants.JWT_TOKEN 
 
-# --- CONFIG ---
-JWT_TOKEN = "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiI3MmVjYzBkZC03NzM5LTQxMDQtYmMzOS0xOGU1YmJiOWY3YmIiLCJzdWIiOiI4MDA2OTc4NzY0Mzg5MTMwMjQiLCJpYXQiOjE3NzIzMzkxODQsImV4cCI6MTc3Mjk0Mzk4NCwidG9rZW5fdmVyIjoxLCJkZXZpY2VfaWQiOiJzdHJpbmciLCJzdWJfdHlwZSI6IkRSSVZFUiIsInNpZCI6IjhhYzY0ZDQ0LTI3NGItNGI4NS04NzgwLTk3NTBmMjg5M2EwNyIsInJvbGVzIjpbIlJPTEVfRFJJVkVSIl19.JwN3wMOdbA_2ASHBmGFDURr5i4q-nKjHhTxkMJwELmrS_Pd-u9RuE_lXuJyULgMIjhHcGsgYR2cXDIFS_sfmHw"  # paste your token here
-# Or use on_start to login dynamically if you have a login endpoint
 
 class LocationServiceUser(HttpUser):
     wait_time = between(1, 3)
