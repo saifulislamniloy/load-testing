@@ -1,0 +1,111 @@
+# =========================
+
+# Python
+
+# =========================
+
+**pycache**/
+*.py[cod]
+*$py.class
+
+# Virtual Environment
+
+venv/
+env/
+ENV/
+.venv/
+.conda/
+.python-version
+
+# =========================
+
+# Locust
+
+# =========================
+
+# Locust logs
+
+*.log
+locust.log
+
+# Locust stats exports
+
+*.csv
+*.html
+
+# If you export reports manually
+
+reports/
+results/
+
+# =========================
+
+# Environment Variables
+
+# =========================
+
+.env
+.env.*
+!.env.example
+
+# =========================
+
+# IDE
+
+# =========================
+
+# VS Code
+
+.vscode/
+
+# IntelliJ / PyCharm
+
+.idea/
+*.iml
+
+# =========================
+
+# OS Files
+
+# =========================
+
+.DS_Store
+Thumbs.db
+
+# =========================
+
+# Build / Packaging
+
+# =========================
+
+dist/
+build/
+*.egg-info/
+.eggs/
+
+# =========================
+
+# Testing / Coverage
+
+# =========================
+
+.coverage
+htmlcov/
+.pytest_cache/
+
+# =========================
+
+# Jupyter
+
+# =========================
+
+.ipynb_checkpoints/
+
+# =========================
+
+# Docker
+
+# =========================
+
+docker-compose.override.yml
+*.pid
