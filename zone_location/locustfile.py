@@ -37,3 +37,31 @@ class LocationServiceUser(HttpUser):
         )
 
         print(res.status_code, res.text)
+
+    
+    @task
+    def find_trip_type(self):
+        """Hit trip-type endpoint with dynamically generated coordinates"""
+        # Generate source, pickup, drop, destination
+        source_lat, source_lon = RandomCoordinateGenerator.random_point_in_polygon(DHAKA)
+        pickup_lat, pickup_lon = RandomCoordinateGenerator.random_point_in_polygon(DHAKA)
+        drop_lat, drop_lon = RandomCoordinateGenerator.random_point_in_polygon(DHAKA)
+        dest_lat, dest_lon = RandomCoordinateGenerator.random_point_in_polygon(DHAKA)
+        stoppage_lat, stoppage_lon = RandomCoordinateGenerator.random_point_in_polygon(DHAKA)
+
+        payload = {
+            "source_location": {"latitude": source_lat, "longitude": source_lon},
+            "pickup": {"latitude": pickup_lat, "longitude": pickup_lon},
+            "drop": {"latitude": drop_lat, "longitude": drop_lon},
+            "destination": {"latitude": dest_lat, "longitude": dest_lon},
+            "stoppages": [{"latitude": stoppage_lat, "longitude": stoppage_lon}]
+        }
+
+        res = self.client.post(
+            "/api/v1/cities/trip-type",
+            json=payload,
+            headers=self.headers(),
+            name="/api/v1/cities/trip-type"
+        )
+
+        print(res.status_code, res.text)

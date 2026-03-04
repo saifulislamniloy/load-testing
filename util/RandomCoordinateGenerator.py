@@ -1,7 +1,6 @@
 import random
 from shapely.geometry import Point, Polygon
 
-from load_testing.util.constants import *
 
 class RandomCoordinateGenerator:
 
