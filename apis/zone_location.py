@@ -4,10 +4,7 @@ from load_testing.util.RandomCoordinateGenerator import RandomCoordinateGenerato
 from load_testing.util import constants
 BANGLADESH = constants.BANGLADESH
 DHAKA = constants.DHAKA
-
-# --- CONFIG ---
-JWT_TOKEN = "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiI2ZmJjMjM5NS0yM2FkLTQyOTktYWM5ZC1jNmY3MGMxNWRmZjMiLCJzdWIiOiI4MDA2OTc4NzY0Mzg5MTMwMjQiLCJpYXQiOjE3NzI2MDUwMDcsImV4cCI6MTc3MzIwOTgwNywidG9rZW5fdmVyIjoxLCJkZXZpY2VfaWQiOiJzdHJpbmciLCJzdWJfdHlwZSI6IkRSSVZFUiIsInNpZCI6IjMyODljOGRjLTYwYTQtNDM3Yy1hMWZjLTc1MTk3NGFjZjRmMyIsInJvbGVzIjpbIlJPTEVfRFJJVkVSIl19.5MFdRXaAghNQWTloDI661_-wH5MLzGXn_VFbxLSvMvbBxXfVpbQ08Qb3GK7EZsBVzPQEfwtdNxdpkOqD7OFTRQ"  # paste your token here
-# Or use on_start to login dynamically if you have a login endpoint
+JWT_TOKEN = constants.JWT_TOKEN 
 
 class LocationServiceUser(HttpUser):
     wait_time = between(1, 3)
@@ -37,5 +34,4 @@ class LocationServiceUser(HttpUser):
         )
 
         print(res.status_code, res.text)
-        
         
