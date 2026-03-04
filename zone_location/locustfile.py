@@ -3,9 +3,10 @@ from locust import HttpUser, task, between, TaskSet
 from load_testing.util.RandomCoordinateGenerator import RandomCoordinateGenerator
 from load_testing.util import constants
 BANGLADESH = constants.BANGLADESH
+DHAKA = constants.DHAKA
 
 # --- CONFIG ---
-JWT_TOKEN = "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiI5MGEyZmZjMS1mMTY1LTQ2NDktOGIyZS1jMDJiYmQxNTA3MTIiLCJzdWIiOiI4MDA2OTc4NzY0Mzg5MTMwMjQiLCJpYXQiOjE3NzI1OTc3MDQsImV4cCI6MTc3MzIwMjUwNCwidG9rZW5fdmVyIjoxLCJkZXZpY2VfaWQiOiJzdHJpbmciLCJzdWJfdHlwZSI6IkRSSVZFUiIsInNpZCI6ImI5N2VkYTBjLTI4NjUtNDg2OS1hZjljLTYzMzk0YWQ2MDc5ZiIsInJvbGVzIjpbIlJPTEVfRFJJVkVSIl19.Zie25X8XoM58adEzGfpapae8W5IFxcAi5D5tJKTsjgyeEwmfOfrtj91PDCqMSJhjXrkKc1RCTWs7QNEYncGnDg"  # paste your token here
+JWT_TOKEN = "eyJhbGciOiJIUzUxMiJ9.eyJqdGkiOiI2ZmJjMjM5NS0yM2FkLTQyOTktYWM5ZC1jNmY3MGMxNWRmZjMiLCJzdWIiOiI4MDA2OTc4NzY0Mzg5MTMwMjQiLCJpYXQiOjE3NzI2MDUwMDcsImV4cCI6MTc3MzIwOTgwNywidG9rZW5fdmVyIjoxLCJkZXZpY2VfaWQiOiJzdHJpbmciLCJzdWJfdHlwZSI6IkRSSVZFUiIsInNpZCI6IjMyODljOGRjLTYwYTQtNDM3Yy1hMWZjLTc1MTk3NGFjZjRmMyIsInJvbGVzIjpbIlJPTEVfRFJJVkVSIl19.5MFdRXaAghNQWTloDI661_-wH5MLzGXn_VFbxLSvMvbBxXfVpbQ08Qb3GK7EZsBVzPQEfwtdNxdpkOqD7OFTRQ"  # paste your token here
 # Or use on_start to login dynamically if you have a login endpoint
 
 class LocationServiceUser(HttpUser):
@@ -26,7 +27,7 @@ class LocationServiceUser(HttpUser):
     def find_zone_by_location(self):
         """Most likely your hottest endpoint"""
 
-        lat, lon = RandomCoordinateGenerator.random_point_in_polygon(BANGLADESH)
+        lat, lon = RandomCoordinateGenerator.random_point_in_polygon(DHAKA)
         print(lat, lon)
         res = self.client.get(
             f"/api/v1/zones/location",
