@@ -109,3 +109,7 @@ htmlcov/
 
 docker-compose.override.yml
 *.pid
+
+
+.locust_env
+.tours

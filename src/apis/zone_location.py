@@ -1,7 +1,6 @@
-# locustfile.py
 from locust import HttpUser, task, between, TaskSet
-from load_testing.util.RandomCoordinateGenerator import RandomCoordinateGenerator
-from load_testing.util import constants
+from util.RandomCoordinateGenerator import RandomCoordinateGenerator
+from util import constants
 BANGLADESH = constants.BANGLADESH
 DHAKA = constants.DHAKA
 JWT_TOKEN = constants.JWT_TOKEN 
