@@ -1,0 +1,57 @@
+from locust import HttpUser, task, between, TaskSet
+from util.RandomCoordinateGenerator import RandomCoordinateGenerator
+from util import constants
+BANGLADESH = constants.BANGLADESH
+DHAKA = constants.DHAKA
+JWT_TOKEN = constants.JWT_TOKEN 
+
+class LocationServiceUser(HttpUser):
+    wait_time = between(1, 3)
+
+    def on_start(self):
+        # If you have a login endpoint, get token here
+        # response = self.client.post("/auth/login", json={"email": "...", "password": "..."})
+        # self.token = response.json()["access_token"]
+        self.token = JWT_TOKEN
+
+    def headers(self):
+        return {"Authorization": f"Bearer {self.token}"}
+
+    # ── High frequency: read/query endpoints ──────────────────────
+
+    @task
+    def find_zone_by_location(self):
+        """Most likely your hottest endpoint"""
+
+        lat, lon = RandomCoordinateGenerator.random_point_in_polygon(DHAKA)
+        print(lat, lon)
+        res = self.client.post(
+            f"/api/v1/birds-eye-report",
+            json={
+                "sources": "USER,DRIVER",
+                "globalCode": "DKK",
+                "coordinates":[
+                [
+                    32.2407135,
+                    70.6588708
+                ],
+                [
+                    32.38935,
+                    109.7648509
+                ],
+                [
+                    9.0779915,
+                    113.8072669
+                ],
+                [
+                    6.5516857,
+                    72.5922001
+                ]
+                ]
+                },
+            headers=self.headers(),
+            name="/api/v1/birds-eye-report"
+        )
+
+        print(res.status_code, res.text)
+        
