@@ -28,10 +28,12 @@ class LocationServiceUser(HttpUser):
         res = self.client.post(
             f"/api/v1/birds-eye-report",
             json={
-                "participant_source": "USER,DRIVER",
-                "global_city_code": "DKK",
-                "city_clone_id": 1,
-                },
+            "participant_source": [
+                "USER",
+                "DRIVER"
+            ],
+            "global_city_code": "DKK"
+            },
             headers=self.headers(),
             name="/api/v1/birds-eye-report"
         )
